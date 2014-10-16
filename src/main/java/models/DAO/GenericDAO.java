@@ -15,8 +15,8 @@ public interface GenericDAO<T, ID> {
 
 	public void deleteByID(ID id);
 
-	public Map<ID, T> findAll();
+	public List<T> findAll();
 
-	public Map<ID, T> findAll(int index, int size);
+	public List<T> findAll(int index, int size);
 
 }

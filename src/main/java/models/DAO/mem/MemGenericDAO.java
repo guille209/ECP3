@@ -1,5 +1,6 @@
 package models.DAO.mem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public abstract class MemGenericDAO<T, ID> implements GenericDAO<T, ID> {
 	public void update(T entity) {
 		// TODO Auto-generated method stub
 		assert mapa.containsValue(entity) : "ERROR: No existe tal entidad";
-		mapa.put(this.getId(entity), entity);		
+		mapa.put(this.getId(entity), entity);
 
 	}
 
@@ -39,15 +40,14 @@ public abstract class MemGenericDAO<T, ID> implements GenericDAO<T, ID> {
 		mapa.remove(id);
 	}
 
-	public Map<ID, T> findAll() {
-		// TODO Auto-generated method stub
+	public List<T> findAll() {
 
-		return mapa;
+		return new ArrayList<T>(mapa.values());
 	}
 
-	public Map<ID, T> findAll(int index, int size) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<T> findAll(int index, int size) {
+		List<T> lista = new ArrayList<T>(mapa.values());
+		return lista.subList(index, size);
 	}
 
 }
