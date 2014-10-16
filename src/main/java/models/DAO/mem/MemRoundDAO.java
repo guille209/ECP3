@@ -7,8 +7,7 @@ public class MemRoundDAO extends MemGenericDAO<Round, Integer> implements
 		RoundDAO {
 
 	@Override
-	public Integer getId(Round round) {
-		// TODO Auto-generated method stub
+	protected Integer getId(Round round) {
 		return round.getId();
 	}
 

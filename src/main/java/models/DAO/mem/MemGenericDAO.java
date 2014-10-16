@@ -10,9 +10,10 @@ public abstract class MemGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
 	Map<ID, T> mapa = new HashMap<ID, T>();
 
-	public abstract ID getId(T entity);
+	protected abstract ID getId(T entity);
 
 	public void create(T entity) {
+		assert !mapa.containsValue(entity) : "ERROR: Entidad ya existente";
 		mapa.put(this.getId(entity), entity);
 	}
 
@@ -22,19 +23,19 @@ public abstract class MemGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
 	public void update(T entity) {
 		// TODO Auto-generated method stub
-		assert mapa.containsValue(entity) : "No existe tal entidad";
+		assert mapa.containsValue(entity) : "ERROR: No existe tal entidad";
 		mapa.put(this.getId(entity), entity);		
 
 	}
 
 	public void delete(T entity) {
-		assert mapa.containsValue(entity) : "No existe tal entidad";
+		assert mapa.containsValue(entity) : "ERROR: No existe tal entidad";
 		mapa.remove(this.getId(entity));
 
 	}
 
 	public void deleteByID(ID id) {
-		assert mapa.containsKey(id) : "No existe tal entidad";
+		assert mapa.containsKey(id) : "ERROR: No existe tal entidad";
 		mapa.remove(id);
 	}
 
